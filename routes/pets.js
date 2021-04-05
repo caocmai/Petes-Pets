@@ -99,6 +99,7 @@ module.exports = (app) => {
   // SHOW PET
   app.get('/pets/:id', (req, res) => {
     Pet.findById(req.params.id).exec((err, pet) => {
+      console.log(pet.price)
       res.render('pets-show', { pet: pet });
     });
   });
@@ -156,6 +157,33 @@ app.get('/search', (req, res) => {
     });
 });
 
+// PURCHASE START
+// app.post('/pets/:id/purchase', (req,res) => {
+//   console.log(`purchase body: ${req.body}`);
+// });
+
+// PURCHASE
+// app.post('/pets/:id/purchase', (req, res) => {
+//   console.log(req.body);
+//   console.log("in purhcase funciton")
+//   // Set your secret key: remember to change this to your live secret key in production
+//   // See your keys here: https://dashboard.stripe.com/account/apikeys
+//   var stripe = require("stripe")(process.env.PRIVATE_STRIPE_API_KEY);
+//   console.log(stripe)
+
+//   // Token is created using Checkout or Elements!
+//   // Get the payment token ID submitted by the form:
+//   const token = req.body.stripeToken; // Using Express
+
+//   const charge = stripe.charges.create({
+//     amount: 999,
+//     currency: 'usd',
+//     description: 'Example charge',
+//     source: token,
+//   }).then(() => {
+//     res.redirect(`/pets/${req.params.id}`);
+//   });
+// });
 
 // PURCHASE
 app.post('/pets/:id/purchase', (req, res) => {
