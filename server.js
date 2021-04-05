@@ -3,6 +3,10 @@ if (!process.env.PORT) {
   process.env.NODE_ENV = "dev"
 }
 
+// require our mailgun dependencies
+// const nodemailer = require('nodemailer');
+// const mg = require('nodemailer-mailgun-transport');
+
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -17,6 +21,39 @@ const app = express();
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/petes-pets');
+
+// auth with our mailgun API key and domain
+// const auth = {
+//   auth: {
+//     api_key: process.env.MAILGUN_API_KEY,
+//     domain: process.env.EMAIL_DOMAIN
+//   }
+// }
+
+// create a mailer
+// const nodemailerMailgun = nodemailer.createTransport(mg(auth));
+
+// SEND EMAIL
+// const user = {
+//   email: 'cao.mai@students.makeschool.com',
+//   name: 'Cao',
+//   age: '43'
+// };
+
+// nodemailerMailgun.sendMail({
+//   from: 'cao.mai@students.makeschool.com',
+//   to: user.email, // An array if you have multiple recipients.
+//   subject: 'Hey you, awesome!',
+//   template: {
+//     name: 'email.handlebars',
+//     engine: 'handlebars',
+//     context: user
+//   }
+// }).then(info => {
+//   console.log('Response: ' + info);
+// }).catch(err => {
+//   console.log('Error: ' + err);
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
