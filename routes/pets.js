@@ -99,7 +99,7 @@ module.exports = (app) => {
   // SHOW PET
   app.get('/pets/:id', (req, res) => {
     Pet.findById(req.params.id).exec((err, pet) => {
-      console.log(pet.price)
+      console.log(pet.isPurchased)
       res.render('pets-show', { pet: pet });
     });
   });
@@ -211,6 +211,16 @@ app.post('/pets/:id/purchase', (req, res) => {
       description: `Purchased ${pet.name}, ${pet.species}`,
       source: token,
     }).then((chg) => {
+      // Pet.findByIdAndUpdate(petId).exec((err, pet1) => {
+      //   pet1.isPurchased = true
+      // })
+
+      // Pet.update( {
+      //   _id: petId
+      // }, {
+      //   $set: { 'isPurchased': true}
+      // })
+      
     // Convert the amount back to dollars for ease in displaying in the template
       const user = {
         email: req.body.stripeEmail,

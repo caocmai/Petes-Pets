@@ -32,6 +32,8 @@ const PetSchema = new Schema({
   , favoriteFood: { type: String, required: true }
   , description: { type: String, minlength: 14, required: true }
   , price: {type: Number, required: true }
+  , purchasedOn: { type: Date }
+  , isPurchased: { type: Boolean, default: false }
 }, {
   timestamps: true
 });
